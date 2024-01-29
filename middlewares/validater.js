@@ -1,4 +1,4 @@
-const User = require ("../models/user_model")
+
 
 exports. userRegisterValidator = (req,res,next) => {
     req.check("Contect","Phone number is Required").notEmpty();
@@ -27,15 +27,3 @@ exports. userRegisterValidator = (req,res,next) => {
     next();
 };
 
-exports.userById = async (req,res,next) => {
-    User.findById(req._id).exec((err,user) => {
-        if(err || !user) {
-            return res.status(404).json({
-                error : "User not found",
-            });
-        }
-        //add user obj in req with all user info 
-        req.ser = user;
-        next();
-    });
-};

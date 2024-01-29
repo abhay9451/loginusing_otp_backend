@@ -4,16 +4,16 @@ const user = require("../models/user_model")
 //const nodemailer = require("nodemailer");
 //const jwt = require("jsonwebtoken");
 //import cont
-const {register,Login,logout,getLoggedInUser} = require("../controllers/auth");
+const {register,Login,logout} = require("../controllers/auth");
 //valid
-const{userRegisterValidator,userById} = require ("../middlewares/validater");
-const{verifyToken} = require ("../middlewares/jwt_auth");
+const{userRegisterValidator} = require ("../middlewares/validater");
+
 //api routes
 
 router.post("/register",userRegisterValidator, register);
 router.post("/login",Login);
 router.get("/logout",logout);
-router.get("/user",verifyToken,userById, getLoggedInUser);
+;
 
 const generateOTP = () => {
     console.log(Math.floor(100000 + Math.random() * 900000).toString());

@@ -80,9 +80,4 @@ exports.Login = async (req, res, next) => {
 };
 
 
-exports.getLoggedInUser = (req, res) => {
-    const { email } = req.user;
 
-    return res.status(201).json({ message: "User logged in successfully", success: email 
-    });
-};
