@@ -1,11 +1,10 @@
 const mongoose = require("mongoose");
 //const uuidv1 = require('uuidv1');
-const crypto = require('crypto');
-//const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+
 const userSchema = new mongoose.Schema({
     Contect: {
         type: String,
-       
         unique: true,
         trim: true,
     },
@@ -19,15 +18,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-
     },
-   
-    //  otp:{
-    //     type: String,
-    //     required: true,
-    //  },
-     
-    
+     otp:{
+        type: String,
+        required: true,
+     },
 
     //salt: String,
 }, {
@@ -43,18 +38,23 @@ const userSchema = new mongoose.Schema({
 
 //     this.hashedPassword = this.encryptPassword(password);
 // });
-userSchema.methods = {
-    encryptPassword: function (password) {
-        if (!password) return "";
+// userSchema.methods = {
+//     encryptPassword: function (password) {
+//         if (!password) return "";
 
-        try {
-            return crypto.createHmac("sha256", this.salt).update(password).digest("hex");
-        } catch (err) {
-            return "";
-        }
-    },
-    authenticate: function (plainText) {
-        return this.encryptPassword(plainText) === this.password;
-    },
-}
+//         try {
+//             return crypto.createHmac("sha256", this.salt).update(password).digest("hex");
+//         } catch (err) {
+//             return "";
+//         }
+//     },
+//     authenticate: function (plainText) {
+//         return this.encryptPassword(plainText) === this.password;
+//     },
+// }
+
+
+userSchema.pre("save", async function () {
+    this.password = await bcrypt.hash(this.password, 6);
+  });
 module.exports = mongoose.model("User", userSchema);
