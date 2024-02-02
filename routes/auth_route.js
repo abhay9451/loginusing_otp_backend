@@ -13,7 +13,7 @@ const{userRegisterValidator} = require ("../middlewares/validater");
 router.post("/register",userRegisterValidator, register);
 router.post("/login",Login);
 router.get("/logout",logout);
-;
+
 
 const generateOTP = () => {
     console.log(Math.floor(100000 + Math.random() * 900000).toString());
@@ -40,3 +40,5 @@ const generateOTP = () => {
 
 
 module.exports = router;
+
+

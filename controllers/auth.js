@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt= require('bcrypt');
 const {createSecretToken} =  require("../unit/SecretToken");
 require ("dotenv").config();
+
+
 exports.register = async(req,res) => {
     // usr already exist
      const ContectExists = await User.findOne({
