@@ -3,6 +3,8 @@ const{json, urlencoded} = express;
 const mongoose =  require ("mongoose");
 const cookieParser = require ("cookie-parser");
 const expressValidator = require ("express-validator");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const app = express();
@@ -10,11 +12,19 @@ const app = express();
 //db
 mongo_url =  "mongodb+srv://abhay:root@cluster1.xerhlau.mongodb.net/?retryWrites=true&w=majority"
 mongoose.connect(mongo_url ,{
-    //useNewUrlParser : true
+ //useNewUrlParser : true
 }) .then (() => console.log("Db connected"))
 .catch(err => console.log("db connection error",err));
 //midde
 app.use(json());
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    
+  };
+app.use(cors(corsOptions));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(urlencoded({ extended: false}));
 app.use(cookieParser());
 app.use(expressValidator());

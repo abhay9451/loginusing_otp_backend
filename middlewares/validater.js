@@ -1,7 +1,9 @@
+
+
 exports. userRegisterValidator = (req,res,next) => {
     req.check("Contect","Phone number is Required").notEmpty();
     req.check ("Contect", "phone should only contain numeric value ").isNumeric();
-    req.check("Contect").isLength({ min: 10, max: 15 }).withMessage("phone number length is not Sufficient");
+    req.check("Contect").isLength({ min: 10 , max: 12  }).withMessage("phone number length is not Sufficient");
 
     //email valid
     req.check("email","Email is required").notEmpty();
@@ -24,3 +26,4 @@ exports. userRegisterValidator = (req,res,next) => {
     }
     next();
 };
+
