@@ -10,8 +10,7 @@ exports.register = async(req,res) => {
      const ContectExists = await User.findOne({
         Contect: req.body.Contect,
      });
-     const emailExists = await User.findOne({
-        email: req.body.email,
+     const emailExists = await User.findOne(
 
      });
       // const otpExists = await User.findOne({
