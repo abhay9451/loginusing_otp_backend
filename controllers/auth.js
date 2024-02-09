@@ -10,13 +10,12 @@ exports.register = async(req,res) => {
      const ContectExists = await User.findOne({
         Contect: req.body.Contect,
      });
-     const emailExists = await User.findOne({
-        email: req.body.email,
+     const emailExists = await User.findOne(
 
      });
-      const otpExists = await User.findOne({
-         otp : req.body.otp,
-      });
+      // const otpExists = await User.findOne({
+      //    otp : req.body.otp,
+      // });
      if(ContectExists) {
         return res.status(403).json({
             error: "phone number is taken",
@@ -34,7 +33,15 @@ exports.register = async(req,res) => {
       });
      }
      // if new user create 
-     const user = new User (req.body);
+
+
+
+
+
+
+
+
+     onst user = new User (req.body);
      await user.save();
 
      res.status(201).json({
