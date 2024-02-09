@@ -33,7 +33,15 @@ exports.register = async(req,res) => {
       });
      }
      // if new user create 
-     const user = new User (req.body);
+
+
+
+
+
+
+
+
+     onst user = new User (req.body);
      await user.save();
 
      res.status(201).json({
