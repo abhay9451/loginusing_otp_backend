@@ -14,9 +14,9 @@ exports.register = async(req,res) => {
         email: req.body.email,
 
      });
-      const otpExists = await User.findOne({
-         otp : req.body.otp,
-      });
+      // const otpExists = await User.findOne({
+      //    otp : req.body.otp,
+      // });
      if(ContectExists) {
         return res.status(403).json({
             error: "phone number is taken",
